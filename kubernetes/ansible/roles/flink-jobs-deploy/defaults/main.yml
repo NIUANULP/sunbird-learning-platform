@@ -131,132 +131,178 @@ job_classname: ""
 
 ### class name vars
 flink_job_names:
-  activity-aggregate-updater:
-    job_class_name: 'org.sunbird.job.aggregate.task.ActivityAggregateUpdaterStreamTask'
+  telemetry-extractor:
+    job_class_name: 'org.sunbird.dp.extractor.task.TelemetryExtractorStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  relation-cache-updater:
-    job_class_name: 'org.sunbird.job.relationcache.task.RelationCacheUpdaterStreamTask'
+    scale_enabled: false
+    scale_target_value: 500000
+    min_replica: 1
+    max_replica: 2
+  pipeline-preprocessor:
+    job_class_name: 'org.sunbird.dp.preprocessor.task.PipelinePreprocessorStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  post-publish-processor:
-    job_class_name: 'org.sunbird.job.postpublish.task.PostPublishProcessorStreamTask'
+    scale_enabled: false
+    scale_target_value: 1000000
+    min_replica: 1
+    max_replica: 2
+  de-normalization:
+    job_class_name: 'org.sunbird.dp.denorm.task.DenormalizationStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  questionset-publish:
-    job_class_name: 'org.sunbird.job.questionset.task.QuestionSetPublishStreamTask'
-    replica: 1
-    jobmanager_memory: 2048m
-    taskmanager_memory: 2048m
-    taskslots: 1
-    cpu_requests: 0.3
-  video-stream-generator:
-    job_class_name: 'org.sunbird.job.videostream.task.VideoStreamGeneratorStreamTask'
+    scale_enabled: false
+  de-normalization-v2:
+    job_class_name: 'org.sunbird.dp.denorm.task.DenormalizationStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  search-indexer:
-    job_class_name: 'org.sunbird.job.searchindexer.task.SearchIndexerStreamTask'
+    scale_enabled: false 
+  de-normalization-secondary:
+    job_class_name: 'org.sunbird.dp.denorm.task.DenormalizationStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  enrolment-reconciliation:
-    job_class_name: 'org.sunbird.job.recounciliation.task.EnrolmentReconciliationStreamTask'
+    scale_enabled: false
+    scale_target_value: 1000000
+    min_replica: 1
+    max_replica: 2 
+  de-normalization-primary:
+    job_class_name: 'org.sunbird.dp.denorm.task.DenormalizationStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  asset-enrichment:
-    job_class_name: 'org.sunbird.job.assetenricment.task.AssetEnrichmentStreamTask'
+    scale_enabled: false
+    scale_target_value: 1000000
+    min_replica: 1
+    max_replica: 2      
+  druid-validator:
+    job_class_name: 'org.sunbird.dp.validator.task.DruidValidatorStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  audit-history-indexer:
-    job_class_name: 'org.sunbird.job.audithistory.task.AuditHistoryIndexerStreamTask'
+    scale_enabled: false
+    scale_target_value: 1000000
+    min_replica: 1
+    max_replica: 2
+  assessment-aggregator:
+    job_class_name: 'org.sunbird.dp.assessment.task.AssessmentAggregatorStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  auto-creator-v2:
-    job_class_name: 'org.sunbird.job.task.AutoCreatorV2StreamTask'
+    scale_enabled: false
+  content-cache-updater:
+    job_class_name: 'org.sunbird.dp.contentupdater.task.ContentCacheUpdaterStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  content-auto-creator:
-    job_class_name: 'org.sunbird.job.contentautocreator.task.ContentAutoCreatorStreamTask'
+    scale_enabled: false
+  user-cache-updater:
+    job_class_name: 'org.sunbird.dp.usercache.task.UserCacheUpdaterStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  audit-event-generator:
-    job_class_name: 'org.sunbird.job.auditevent.task.AuditEventGeneratorStreamTask'
+    scale_enabled: false
+  user-cache-updater-v2:
+    job_class_name: 'org.sunbird.dp.usercache.task.UserCacheUpdaterStreamTaskV2'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  metrics-data-transformer:
-    job_class_name: 'org.sunbird.job.metricstransformer.task.MetricsDataTransformerStreamTask'
+    scale_enabled: false
+  summary-denormalization:
+    job_class_name: 'org.sunbird.dp.denorm.task.SummaryDenormalizationStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  collection-cert-pre-processor:
-    job_class_name: 'org.sunbird.job.collectioncert.task.CollectionCertPreProcessorTask'
+    scale_enabled: false
+    scale_target_value: 100
+    min_replica: 1
+    max_replica: 2
+  device-profile-updater:
+    job_class_name: 'org.sunbird.dp.deviceprofile.task.DeviceProfileUpdaterStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  collection-certificate-generator:
-    job_class_name: 'org.sunbird.job.certgen.task.CertificateGeneratorStreamTask'
+    scale_enabled: false
+  ingest-router:
+    job_class_name: 'org.sunbird.dp.ingestrouter.task.IngestRouterStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  mvc-indexer:
-    job_class_name: 'org.sunbird.job.mvcindexer.task.MVCIndexerStreamTask'
+    scale_enabled: false
+    scale_target_value: 500000
+    min_replica: 1
+    max_replica: 2
+  error-denormalization:
+    job_class_name: 'org.sunbird.dp.denorm.task.DenormalizationStreamTask'
     replica: 1
     jobmanager_memory: 1024m
     taskmanager_memory: 1024m
+    taskmanager_process_memory: 1700m
+    jobmanager_process_memory: 1600m
     taskslots: 1
     cpu_requests: 0.3
-  content-publish:
-    job_class_name: 'org.sunbird.job.content.task.ContentPublishStreamTask'
-    replica: 1
-    jobmanager_memory: 2048m
-    taskmanager_memory: 2048m
-    taskslots: 1
-    cpu_requests: 0.3
-  qrcode-image-generator:
-    job_class_name: 'org.sunbird.job.qrimagegenerator.task.QRCodeImageGeneratorTask'
-    replica: 1
-    jobmanager_memory: 1024m
-    taskmanager_memory: 1024m
-    taskslots: 1
-    cpu_requests: 0.3
+    scale_enabled: false 
+
 
 ### Global vars
 middleware_course_keyspace: "sunbird_courses"
